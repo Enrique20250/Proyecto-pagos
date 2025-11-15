@@ -18,25 +18,38 @@ app.post('/usuarios', (req, res) => {
 app.listen(3000, () => {
     console.log("Servidor corriendo en http://localhost:3000");
 
-let servicios = [
-    { nombre: "Mantenimiento PC", descripcion: "Limpieza y optimización", precio: 50 }
+let pagos = [
+    { cliente: "Carlos", monto: 120, fecha: "2025-01-01" }
 ];
 
-app.get('/servicios', (req, res) => {
-    console.log("Mostrando servicios...");
-    res.send(servicios); // Simulación
+app.get("/pagos", (req, res) => {
+    console.log("Mostrando pagos (simulación)");
+    res.send(pagos);
 });
 
-app.post('/servicios', (req, res) => {
-    const { nombre, descripcion, precio } = req.body;
+app.post("/pagos", (req, res) => {
+    const { cliente, monto, fecha } = req.body;
 
     console.log("Datos recibidos:", req.body);
 
-    // Simulación de guardado
-    servicios.push({ nombre, descripcion, precio });
+    pagos.push({ cliente, monto, fecha });
 
-    res.send("Servicio procesado correctamente (simulación)");
+    res.send("Pago procesado correctamente (simulación)");
 });
+    let pagos = [
+    { cliente: "Carlos", monto: 120, fecha: "2025-01-01" }
+];
+
+app.post("/pagos", (req, res) => {
+    const { cliente, monto, fecha } = req.body;
+
+    console.log("Datos recibidos:", req.body);
+
+    pagos.push({ cliente, monto, fecha });
+
+    res.send("Pago procesado correctamente (simulación)");
+});
+
 
 });
 
