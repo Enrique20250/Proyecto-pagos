@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
-const PagoService = require("./servicio/PagoService");
-const PagoController = require("./servicio/PagoController");
-const PagoRouter = require ("./servicio/
+const PagoRouter = require("./routes/pagos.routes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 app.post('/usuarios', (req, res) => {
     const datos = req.body;
@@ -17,30 +14,11 @@ app.post('/usuarios', (req, res) => {
     res.send("Usuario procesado correctamente (simulación)");
 });
 
-
-let pagos = [
-    { cliente: "Carlos", monto: 120, fecha: "2025-01-01" }
-];
+app.use("/pagos", PagoRouter);
 
 let servicios = [
     { nombre: "Mantenimiento", costo: 80, descripcion: "Servicio básico" }
 ];
-
-app.get("/pagos", (req, res) => {
-    console.log("Mostrando pagos (simulación)");
-    res.send(pagos);
-});
-
-app.post("/pagos", (req, res) => {
-    const { cliente, monto, fecha } = req.body;
-
-    console.log("Datos recibidos del formulario (PAGOS):");
-    console.log(req.body);
-
-    pagos.push({ cliente, monto, fecha });
-
-    res.send("Pago procesado correctamente (simulación)");
-});
 
 app.get("/servicios", (req, res) => {
     console.log("Mostrando servicios (simulación)");
@@ -58,10 +36,6 @@ app.post("/servicios", (req, res) => {
     res.send("Servicio procesado correctamente (simulación)");
 });
 
-
-
 app.listen(3000, () => {
     console.log("Servidor corriendo en http://localhost:3000");
 });
-
-
