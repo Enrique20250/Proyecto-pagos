@@ -17,7 +17,7 @@ app.post('/usuarios', (req, res) => {
 app.use("/pagos", PagoRouter);
 
 let servicios = [
-    { nombre: "Mantenimiento", costo: 80, descripcion: "Servicio básico" }
+    { nombre: "Mantenimiento", precio: 80, descripcion: "Servicio básico" }
 ];
 
 app.get("/servicios", (req, res) => {
