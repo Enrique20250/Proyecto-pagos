@@ -5,18 +5,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.get('/', (req, res) => {
-    res.send("Servidor funcionando");
-});
-
-app.post('/guardarUsuario', (req, res) => {
+app.post('/usuarios', (req, res) => {
     const datos = req.body;
 
-    console.log("Datos recibidos:", datos);
+    console.log("Datos recibidos del formulario:");
+    console.log(datos);  
 
-    res.send("Usuario recibido y procesado (simulación)");
+    res.send("Usuario procesado correctamente (simulación)");
 });
+
 
 app.listen(3000, () => {
-    console.log("Servidor iniciado en http://localhost:3000");
+    console.log("Servidor corriendo en http://localhost:3000");
 });
+
+
+
+
