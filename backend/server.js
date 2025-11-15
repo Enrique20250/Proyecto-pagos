@@ -45,15 +45,16 @@ app.get("/servicios", (req, res) => {
 });
 
 app.post("/servicios", (req, res) => {
-    const { nombre, costo, descripcion } = req.body;
+    const { nombre, precio, descripcion } = req.body;
 
     console.log("Datos recibidos del formulario (SERVICIOS):");
     console.log(req.body);
 
-    servicios.push({ nombre, costo, descripcion });
+    servicios.push({ nombre, precio, descripcion });
 
     res.send("Servicio procesado correctamente (simulación)");
 });
+
 
 
 app.listen(3000, () => {
