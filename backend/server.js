@@ -13,6 +13,10 @@ app.post('/usuarios', (req, res) => {
 
     res.send("Usuario procesado correctamente (simulación)");
 });
+app.get("/usuarios", (req, res) => {
+    res.send("Página de usuarios (GET funcionando)");
+});
+
 
 app.use("/pagos", PagoRouter);
 
