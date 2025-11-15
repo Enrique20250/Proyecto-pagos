@@ -5,6 +5,7 @@ const PagoRouter = require("./routes/pagos.routes");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+/* === USUARIOS === */
 app.post('/usuarios', (req, res) => {
     const datos = req.body;
 
@@ -13,20 +14,22 @@ app.post('/usuarios', (req, res) => {
 
     res.send("Usuario procesado correctamente (simulación)");
 });
+
 app.get("/usuarios", (req, res) => {
     res.send("Página de usuarios (GET funcionando)");
 });
 
-
+/* === PAGOS === */
 app.use("/pagos", PagoRouter);
 
+/* === SERVICIOS === */
 let servicios = [
     { nombre: "Mantenimiento", precio: 80, descripcion: "Servicio básico" }
 ];
 
 app.get("/servicios", (req, res) => {
     console.log("Mostrando servicios (simulación)");
-    res.send(servicios);
+    res.json(servicios); // ← CORREGIDO
 });
 
 app.post("/servicios", (req, res) => {
@@ -40,6 +43,8 @@ app.post("/servicios", (req, res) => {
     res.send("Servicio procesado correctamente (simulación)");
 });
 
+/* === Servidor === */
 app.listen(3000, () => {
     console.log("Servidor corriendo en http://localhost:3000");
 });
+
