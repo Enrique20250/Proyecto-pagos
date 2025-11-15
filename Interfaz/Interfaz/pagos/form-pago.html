@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Pago</title>
+</head>
+<body>
+    <h2>Registrar Pago</h2>
+
+    <form action="http://localhost:3000/pagos" method="POST">
+        <label>Cliente:</label>
+        <input type="text" name="cliente" required><br><br>
+
+        <label>Monto:</label>
+        <input type="number" step="0.01" name="monto" required><br><br>
+
+        <label>Fecha:</label>
+        <input type="date" name="fecha" required><br><br>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <br>
+    <a href="../menu.html">Volver al menú</a>
+</body>
+</html>
 
