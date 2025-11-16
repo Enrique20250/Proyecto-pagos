@@ -1,11 +1,32 @@
-<h2>Realizar pago</h2>
-<form id="formPago">
-    Monto: <input type="number" id="monto" required><br>
-    Método:
-    <select id="metodo">
-        <option value="tarjeta">Tarjeta</option>
-        <option value="transferencia">Transferencia</option>
-    </select>
-    <button type="submit">Continuar</button>
-</form>
-<script src="script.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pagar</title>
+</head>
+<body>
+    <h1>Formulario de Pago</h1>
+    <form id="formPago">
+        <label>Método de Pago:</label>
+        <select id="metodo" name="metodo" required>
+            <option value="tarjeta">Tarjeta</option>
+            <option value="transferencia">Transferencia</option>
+        </select><br><br>
+
+        
+        <input type="text" name="numero" placeholder="Número de tarjeta"><br>
+        <input type="text" name="fecha" placeholder="Fecha de vencimiento"><br>
+        <input type="text" name="cvv" placeholder="CVV"><br>
+
+    
+        <input type="text" name="banco" placeholder="Banco"><br>
+        <input type="text" name="cuenta" placeholder="Número de cuenta"><br>
+
+        <input type="number" id="monto" name="monto" placeholder="Monto" required><br><br>
+
+        <button type="submit">Pagar</button>
+    </form>
+
+    <div id="resultado"></div>
+      <script src="{{ url_for('static', filename='pagos/script.js') }}"></script>
+</body>
+</html>
