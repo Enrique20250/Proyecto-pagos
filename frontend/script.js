@@ -1,14 +1,22 @@
-document.getElementById("formPago").addEventListener("submit", async (e) => {
-    e.preventDefault();
+document.getElementById("formPago").addEventListener("submit", async (e) => { 
+    e.preventDefault();  
+
     const datos = {
-        monto: document.getElementById("monto").value,
-        metodo: document.getElementById("metodo").value
+        metodo: document.getElementById("metodo").value,
+        numero: document.querySelector('input[name="numero"]').value,
+        fecha: document.querySelector('input[name="fecha"]').value,
+        cvv: document.querySelector('input[name="cvv"]').value,
+        banco: document.querySelector('input[name="banco"]').value,
+        cuenta: document.querySelector('input[name="cuenta"]').value,
+        monto: document.getElementById("monto").value
     };
-    const res = await fetch("http://localhost:5000/pagos/realizar", {
+
+    const res = await fetch("/pagos/realizar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datos)
     });
+
     const json = await res.json();
-    console.log(json);
+    document.getElementById("resultado").innerText = json.mensaje;
 });
