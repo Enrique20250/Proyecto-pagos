@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Pago</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">💳 PaymentHub</h1>
+            <nav class="nav">
+                <a href="/" class="nav-link">Inicio</a>
+                <a href="/pagos/pagar" class="nav-link active">Realizar Pago</a>
+                <a href="/pagos/historial" class="nav-link">Historial</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section class="form-section">
+            <h2>Formulario de Pago</h2>
+            
+            <!-- Agregar tarjetas de prueba válidas para referencia -->
+            <div class="test-cards-info">
+                <strong>Tarjetas de Prueba (Válidas):</strong>
+                <div class="test-cards">
+                    <span>4532015112830366</span> | 
+                    <span>5425233010103442</span> | 
+                    <span>378282246310005</span>
+                </div>
+                <small>Usa cualquiera con fecha futura (ej: 12/26) y CVV 123</small>
+            </div>
+            
+            <form id="formPago" class="payment-form">
+                <div class="form-group">
+                    <label for="metodo">Método de Pago *</label>
+                    <select id="metodo" name="metodo" required>
+                        <option value="">Seleccionar método...</option>
+                        <option value="tarjeta">Tarjeta de Crédito</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                    </select>
+                </div>
+
+                <div id="campos-tarjeta" class="form-fields hidden">
+                    <h3>Información de Tarjeta</h3>
+                    <div class="form-group">
+                        <label for="numero">Número de Tarjeta *</label>
+                        <input type="text" id="numero" name="numero" placeholder="4532 0151 1283 0366" maxlength="19">
+                        <small class="error-text" id="error-numero"></small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fecha">Fecha de Vencimiento *</label>
+                            <input type="text" id="fecha" name="fecha" placeholder="MM/YY" maxlength="5">
+                            <small class="error-text" id="error-fecha"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV *</label>
+                            <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            <small class="error-text" id="error-cvv"></small>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="campos-transferencia" class="form-fields hidden">
+                    <h3>Información de Transferencia</h3>
+                    <div class="form-group">
+                        <label for="banco">Banco *</label>
+                        <input type="text" id="banco" name="banco" placeholder="Ej: Banco Nacional">
+                        <small class="error-text" id="error-banco"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cuenta">Número de Cuenta *</label>
+                        <input type="text" id="cuenta" name="cuenta" placeholder="1234567890">
+                        <small class="error-text" id="error-cuenta"></small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="monto">Monto a Pagar ($) *</label>
+                    <input type="number" id="monto" name="monto" placeholder="0.00" step="0.01" min="0.01">
+                    <small class="error-text" id="error-monto"></small>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">Procesar Pago</button>
+            </form>
+
+            <div id="resultado" class="resultado hidden"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Sistema de Pagos Seguro. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
