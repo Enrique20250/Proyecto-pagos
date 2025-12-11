@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Panel de Administrador - PaymentHub{% endblock %}
+
+{% block content %}
+<section class="admin-dashboard">
+    <h2>Panel de Administrador</h2>
+
+    <div class="stats-grid">
+        {% set stats = [
+            ('total-usuarios', 'Total de Usuarios'),
+            ('total-transacciones', 'Total de Transacciones'),
+            ('monto-total', 'Monto Total Procesado'),
+            ('promedio-transaccion', 'Promedio por Transacción')
+        ] %}
+
+        {% for id, titulo in stats %}
+        <div class="stat-card">
+            <h4>{{ titulo }}</h4>
+            <div class="stat-value" id="{{ id }}">0</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="admin-section">
+        <h3>Todas las Transacciones</h3>
+        <div class="table-container">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Usuario</th>
+                        <th>Tipo</th>
+                        <th>Monto</th>
+                        <th>Estado</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody id="transacciones-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="admin-section">
+        <h3>Registro de Auditoría</h3>
+        <div class="table-container">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Acción</th>
+                        <th>Fecha</th>
+                        <th>IP</th>
+                    </tr>
+                </thead>
+                <tbody id="auditoria-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    fetchEstadisticas();
+    cargarTabla('/admin/api/transacciones', 'transacciones-tbody', renderTransaccion);
+    cargarTabla('/admin/api/auditoria', 'auditoria-tbody', renderAuditoria);
+});
+
+async function fetchEstadisticas() {
+    try {
+        const res = await fetch('/admin/api/estadisticas');
+        const d = await res.json();
+        setText('total-usuarios', d.total_usuarios);
+        setText('total-transacciones', d.total_transacciones);
+        setText('monto-total', `$${d.monto_total.toFixed(2)}`);
+        setText('promedio-transaccion', `$${d.promedio_transaccion.toFixed(2)}`);
+    } catch (e) { console.error(e); }
+}
+
+async function cargarTabla(url, tbodyId, renderer) {
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        const tbody = document.getElementById(tbodyId);
+
+        data.forEach(item => {
+            const row = tbody.insertRow();
+            row.innerHTML = renderer(item);
+        });
+    } catch (e) { console.error(e); }
+}
+
+const renderTransaccion = t => `
+    <td>${t.id}</td>
+    <td>${t.usuario}</td>
+    <td>${t.tipo}</td>
+    <td>$${t.monto.toFixed(2)}</td>
+    <td><span class="status-badge success">${t.estado}</span></td>
+    <td>${t.timestamp}</td>
+`;
+
+const renderAuditoria = a => `
+    <td>${a.usuario}</td>
+    <td>${a.accion}</td>
+    <td>${a.timestamp}</td>
+    <td>${a.ip}</td>
+`;
+
+const setText = (id, text) => document.getElementById(id).textContent = text;
+</script>
+{% endblock %}
