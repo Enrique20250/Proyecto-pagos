@@ -1,12 +1,14 @@
+<!-- Agregando comentarios explicativos a todo el HTML -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Transacciones</title>
+    <title>Historial de Transacciones - PaymentHub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <!-- ENCABEZADO CON NAVEGACIÓN -->
     <header class="header">
         <div class="container">
             <h1 class="logo">💳 PaymentHub</h1>
@@ -18,43 +20,48 @@
         </div>
     </header>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <main class="container main-content">
         <section class="historial-section">
-            <h2>Historial de Transacciones</h2>
+            <h2>📊 Historial de Transacciones</h2>
             
-            <!-- Agregar estadísticas mejoradas -->
+            <!-- ESTADÍSTICAS (4 tarjetas mostrando resumen) -->
             <div id="stats" class="stats-grid">
+                <!-- Tarjeta 1: Total de transacciones realizadas -->
                 <div class="stat-card">
                     <h4>Total Transacciones</h4>
                     <p id="total-transacciones" class="stat-value">0</p>
                 </div>
+                <!-- Tarjeta 2: Suma total de dinero movido -->
                 <div class="stat-card">
-                    <h4>Monto Total Procesado</h4>
+                    <h4>Monto Total</h4>
                     <p id="monto-total" class="stat-value">$0.00</p>
                 </div>
+                <!-- Tarjeta 3: Cantidad de transacciones exitosas -->
                 <div class="stat-card">
-                    <h4>Transacciones Exitosas</h4>
+                    <h4>Exitosas</h4>
                     <p id="transacciones-exitosas" class="stat-value">0</p>
                 </div>
+                <!-- Tarjeta 4: Promedio de monto por transacción -->
                 <div class="stat-card">
-                    <h4>Promedio por Transacción</h4>
+                    <h4>Promedio</h4>
                     <p id="promedio-transaccion" class="stat-value">$0.00</p>
                 </div>
             </div>
 
-            <!-- Agregar opciones de filtrado -->
-            <div style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <button id="btn-actualizar" class="btn btn-primary" style="padding: 0.5rem 1rem;">
-                    🔄 Actualizar
-                </button>
-                <button id="btn-limpiar" class="btn" style="padding: 0.5rem 1rem; background-color: #ef4444; color: white;">
-                    🗑️ Limpiar Historial
-                </button>
+            <!-- BOTONES DE ACCIÓN -->
+            <div class="action-buttons">
+                <!-- Botón para recargar transacciones desde el servidor -->
+                <button id="btn-actualizar" class="btn btn-primary">🔄 Actualizar</button>
+                <!-- Botón para borrar todo el historial -->
+                <button id="btn-limpiar" class="btn btn-danger">🗑️ Limpiar Historial</button>
             </div>
 
+            <!-- TABLA CON TODAS LAS TRANSACCIONES -->
             <div class="table-container">
                 <table class="transactions-table">
                     <thead>
+                        <!-- Encabezados de la tabla -->
                         <tr>
                             <th>ID Transacción</th>
                             <th>Tipo de Pago</th>
@@ -64,25 +71,35 @@
                             <th>Estado</th>
                         </tr>
                     </thead>
+                    <!-- Aquí se llenan las filas dinámicamente con JavaScript -->
                     <tbody id="tabla-transacciones">
                         <tr>
-                            <td colspan="6" style="text-align: center; padding: 20px;">Cargando transacciones...</td>
+                            <td colspan="6" style="text-align: center; padding: 20px;">
+                                Cargando transacciones...
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
+            <!-- ESTADO VACÍO (se muestra si no hay transacciones) -->
             <div id="sin-transacciones" class="empty-state hidden">
-                <p style="font-size: 1.1rem; margin-bottom: 1rem;">📋 No hay transacciones registradas aún</p>
-                <a href="/pagos/pagar" class="btn btn-primary">Realizar tu primer pago</a>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">
+                    📋 No hay transacciones registradas aún
+                </p>
+                <a href="/pagos/pagar" class="btn btn-primary">
+                    Realizar tu primer pago
+                </a>
             </div>
         </section>
     </main>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="footer">
-        <p>&copy; 2025 Sistema de Pagos Seguro. Todos los derechos reservados.</p>
+        <p>&copy; 2025 PaymentHub - Sistema de Pagos Seguro. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Cargar el script que maneja la tabla dinámica -->
     <script src="{{ url_for('static', filename='js/historial.js') }}"></script>
 </body>
 </html>
