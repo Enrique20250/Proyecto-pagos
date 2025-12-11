@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realizar Pago</title>
+    <title>Realizar Pago - PaymentHub</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -20,43 +20,55 @@
 
     <main class="container main-content">
         <section class="form-section">
-            <h2>Formulario de Pago</h2>
+            <h2>Formulario de Pago Seguro</h2>
             
-            <!-- Agregar tarjetas de prueba válidas para referencia -->
+            <!-- SECCIÓN DE TARJETAS DE PRUEBA -->
             <div class="test-cards-info">
-                <strong>Tarjetas de Prueba (Válidas):</strong>
+                <strong>Tarjetas de Prueba Válidas:</strong>
                 <div class="test-cards">
-                    <span>4532015112830366</span> | 
-                    <span>5425233010103442</span> | 
-                    <span>378282246310005</span>
+                    <!-- Visa válida (pasa algoritmo de Luhn) -->
+                    <span>4532 0151 1283 0366</span>
+                    <!-- MasterCard válida -->
+                    <span>5425 2330 1010 3442</span>
+                    <!-- American Express válida -->
+                    <span>3782 8224 6310 005</span>
                 </div>
-                <small>Usa cualquiera con fecha futura (ej: 12/26) y CVV 123</small>
+                <small>Usa cualquiera con fecha futura (12/26) y CVV 123</small>
             </div>
             
+            <!-- FORMULARIO PRINCIPAL -->
             <form id="formPago" class="payment-form">
+                <!-- SELECTOR DE MÉTODO DE PAGO -->
                 <div class="form-group">
                     <label for="metodo">Método de Pago *</label>
                     <select id="metodo" name="metodo" required>
                         <option value="">Seleccionar método...</option>
-                        <option value="tarjeta">Tarjeta de Crédito</option>
-                        <option value="transferencia">Transferencia Bancaria</option>
+                        <option value="tarjeta">💳 Tarjeta de Crédito</option>
+                        <option value="transferencia">🏦 Transferencia Bancaria</option>
                     </select>
                 </div>
 
+                <!-- CAMPOS PARA TARJETA DE CRÉDITO (se muestran/ocultan según selección) -->
                 <div id="campos-tarjeta" class="form-fields hidden">
                     <h3>Información de Tarjeta</h3>
+                    
+                    <!-- Campo: Número de tarjeta -->
                     <div class="form-group">
                         <label for="numero">Número de Tarjeta *</label>
                         <input type="text" id="numero" name="numero" placeholder="4532 0151 1283 0366" maxlength="19">
                         <small class="error-text" id="error-numero"></small>
                     </div>
 
+                    <!-- Fila con Vencimiento y CVV (lado a lado) -->
                     <div class="form-row">
+                        <!-- Campo: Fecha de vencimiento -->
                         <div class="form-group">
-                            <label for="fecha">Fecha de Vencimiento *</label>
-                            <input type="text" id="fecha" name="fecha" placeholder="MM/YY" maxlength="5">
+                            <label for="fecha">Vencimiento (MM/YY) *</label>
+                            <input type="text" id="fecha" name="fecha" placeholder="12/26" maxlength="5">
                             <small class="error-text" id="error-fecha"></small>
                         </div>
+                        
+                        <!-- Campo: CVV (código de seguridad) -->
                         <div class="form-group">
                             <label for="cvv">CVV *</label>
                             <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
@@ -65,38 +77,46 @@
                     </div>
                 </div>
 
+                <!-- CAMPOS PARA TRANSFERENCIA BANCARIA (se muestran/ocultan según selección) -->
                 <div id="campos-transferencia" class="form-fields hidden">
                     <h3>Información de Transferencia</h3>
+                    
+                    <!-- Campo: Nombre del banco -->
                     <div class="form-group">
                         <label for="banco">Banco *</label>
-                        <input type="text" id="banco" name="banco" placeholder="Ej: Banco Nacional">
+                        <input type="text" id="banco" name="banco" placeholder="Ej: Banco Nacional" maxlength="50">
                         <small class="error-text" id="error-banco"></small>
                     </div>
 
+                    <!-- Campo: Número de cuenta -->
                     <div class="form-group">
                         <label for="cuenta">Número de Cuenta *</label>
-                        <input type="text" id="cuenta" name="cuenta" placeholder="1234567890">
+                        <input type="text" id="cuenta" name="cuenta" placeholder="1234567890" maxlength="20">
                         <small class="error-text" id="error-cuenta"></small>
                     </div>
                 </div>
 
+                <!-- CAMPO COMÚN: MONTO A PAGAR -->
                 <div class="form-group">
                     <label for="monto">Monto a Pagar ($) *</label>
-                    <input type="number" id="monto" name="monto" placeholder="0.00" step="0.01" min="0.01">
+                    <input type="number" id="monto" name="monto" placeholder="0.00" step="0.01" min="0.01" max="999999.99" required>
                     <small class="error-text" id="error-monto"></small>
                 </div>
 
+                <!-- BOTÓN PARA ENVIAR -->
                 <button type="submit" class="btn btn-primary btn-large">Procesar Pago</button>
             </form>
 
+            <!-- DIV PARA MOSTRAR RESULTADO (éxito o error) -->
             <div id="resultado" class="resultado hidden"></div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 Sistema de Pagos Seguro. Todos los derechos reservados.</p>
+        <p>&copy; 2025 PaymentHub - Sistema de Pagos Seguro. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Cargar el script de validaciones -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
