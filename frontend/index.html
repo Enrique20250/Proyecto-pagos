@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Pagos - Inicio</title>
+    <title>PaymentHub - Sistema de Pagos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
@@ -21,7 +21,7 @@
     <main class="container main-content">
         <section class="hero">
             <h2>Bienvenido a PaymentHub</h2>
-            <p>Sistema de Pagos Seguro - Realiza transacciones con confianza</p>
+            <p>Sistema de Pagos Seguro y Confiable</p>
             <a href="/pagos/pagar" class="btn btn-primary">Iniciar Pago Seguro</a>
         </section>
 
@@ -31,22 +31,22 @@
                 <div class="feature-card">
                     <span class="feature-icon">🔒</span>
                     <h4>Seguridad de Datos</h4>
-                    <p>Validación robusta con algoritmo de Luhn y protocolos de seguridad</p>
+                    <p>Validación con algoritmo de Luhn y protocolos de seguridad</p>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">💳</span>
                     <h4>Múltiples Métodos</h4>
-                    <p>Tarjeta de crédito y transferencias bancarias seguras</p>
+                    <p>Tarjeta de crédito y transferencias bancarias</p>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">📱</span>
-                    <h4>Interfaz Responsiva</h4>
-                    <p>Accede desde cualquier dispositivo - móvil, tablet o escritorio</p>
+                    <h4>Totalmente Responsiva</h4>
+                    <p>Funciona en móvil, tablet y escritorio</p>
                 </div>
                 <div class="feature-card">
                     <span class="feature-icon">📊</span>
                     <h4>Historial Completo</h4>
-                    <p>Visualiza y controla todas tus transacciones en un solo lugar</p>
+                    <p>Controla todas tus transacciones</p>
                 </div>
             </div>
         </section>
@@ -57,74 +57,46 @@
                 <div class="method-box">
                     <h4>💳 Tarjeta de Crédito</h4>
                     <ul>
-                        <li>Soporta Visa, MasterCard y American Express</li>
+                        <li>Soporta Visa, MasterCard y Amex</li>
                         <li>Validación Luhn de 13-19 dígitos</li>
                         <li>Protección de CVV (3-4 dígitos)</li>
-                        <li>Transacciones procesadas instantáneamente</li>
-                        <li>Verificación de fecha de vencimiento</li>
+                        <li>Verificación de vencimiento</li>
                     </ul>
                 </div>
                 <div class="method-box">
                     <h4>🏦 Transferencia Bancaria</h4>
                     <ul>
                         <li>Múltiples bancos soportados</li>
-                        <li>Validación de número de cuenta (10-20 dígitos)</li>
-                        <li>Confirmación segura de transacción</li>
+                        <li>Validación de cuenta (10-20 dígitos)</li>
+                        <li>Confirmación segura</li>
                         <li>ID único por transacción</li>
-                        <li>Comprobante automático generado</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Agregar sección de guía de uso -->
-        <section class="info" style="margin-top: 3rem;">
-            <h3>Cómo Usar el Sistema</h3>
-            <div class="methods-grid">
-                <div class="method-box">
-                    <h4>Paso 1: Selecciona Método</h4>
-                    <p>Elige entre tarjeta de crédito o transferencia bancaria en el formulario de pago.</p>
-                </div>
-                <div class="method-box">
-                    <h4>Paso 2: Completa Datos</h4>
-                    <p>Ingresa los datos solicitados. El sistema validará automáticamente mientras escribes.</p>
-                </div>
-                <div class="method-box">
-                    <h4>Paso 3: Especifica Monto</h4>
-                    <p>Ingresa el monto a pagar (entre $0.01 y $999,999.99).</p>
-                </div>
-                <div class="method-box">
-                    <h4>Paso 4: Procesa Pago</h4>
-                    <p>Haz clic en "Procesar Pago" y recibirás un ID de transacción único.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Agregar sección de tarjetas de prueba -->
-        <section class="info" style="background-color: #eff6ff; padding: 2rem; border-radius: 8px; border: 2px solid #2563eb;">
+        <section class="test-cards">
             <h3>Tarjetas de Prueba</h3>
-            <p style="text-align: center; margin-bottom: 1.5rem; color: #1e40af;">
-                Usa cualquiera de estas tarjetas para probar el sistema. Cualquier fecha futura y CVV 123.
-            </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2563eb;">
-                    <h4 style="margin-bottom: 0.5rem; color: #2563eb;">Visa</h4>
-                    <code style="font-family: 'Courier New', monospace; font-size: 1.1rem;">4532 0151 1283 0366</code>
+            <p>Usa cualquiera de estas tarjetas. Fecha: 12/26, CVV: 123</p>
+            <div class="cards-grid">
+                <div class="card-box">
+                    <strong>Visa</strong>
+                    <code>4532 0151 1283 0366</code>
                 </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2563eb;">
-                    <h4 style="margin-bottom: 0.5rem; color: #2563eb;">MasterCard</h4>
-                    <code style="font-family: 'Courier New', monospace; font-size: 1.1rem;">5425 2330 1010 3442</code>
+                <div class="card-box">
+                    <strong>MasterCard</strong>
+                    <code>5425 2330 1010 3442</code>
                 </div>
-                <div style="background: white; padding: 1.5rem; border-radius: 8px; border-left: 4px solid #2563eb;">
-                    <h4 style="margin-bottom: 0.5rem; color: #2563eb;">American Express</h4>
-                    <code style="font-family: 'Courier New', monospace; font-size: 1.1rem;">3782 8224 6310 005</code>
+                <div class="card-box">
+                    <strong>American Express</strong>
+                    <code>3782 8224 6310 005</code>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <p>&copy; 2025 PaymentHub - Sistema de Pagos Seguro. Todos los derechos reservados.</p>
+        <p>&copy; 2025 PaymentHub - Sistema de Pagos. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
