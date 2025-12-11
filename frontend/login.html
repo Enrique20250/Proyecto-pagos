@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - PaymentHub{% endblock %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-form">
+        <h2>Iniciar Sesión</h2>
+        {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        
+        <form method="POST" class="payment-form">
+            <div class="form-group">
+                <label for="username">Usuario</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-large">Iniciar Sesión</button>
+        </form>
+        
+        <p class="auth-link">¿No tienes cuenta? <a href="/auth/register">Registrarse</a></p>
+    </div>
+</div>
+{% endblock %}
